@@ -1,6 +1,10 @@
 import ReactECharts from "echarts-for-react";
 
 function Charts() {
+  const labelRight = {
+    position: "right",
+  } as const;
+
   const horizontalBarGraphOption = {
     tooltip: {
       trigger: "axis",
@@ -8,31 +12,67 @@ function Charts() {
         type: "shadow",
       },
     },
-    grid: {
-      left: "2%",
-      right: "2%",
-      top: "-2%",
-      bottom: "0%",
-      containLabel: true,
-    },
-    xAxis: {
-      type: "value",
-      boundaryGap: [0, 0.01],
-    },
-    yAxis: {
-      type: "category",
-      data: [
-        "Product",
-        "Office of CEO",
-        "Marketing",
-        "Customer Support",
-        "Finance",
-        "HR",
-        "IT",
-        "Sales",
-        "Operations",
-      ],
-    },
+    grid: [
+      {
+        left: "2%",
+        right: "2%",
+        top: "-2%",
+        bottom: "0%",
+        height: "100%",
+        width: "50%",
+        containLabel: true,
+      },
+      {
+        left: "2%",
+        right: "2%",
+        top: "-2%",
+        bottom: "0%",
+        height: "100%",
+        width: "50%",
+        containLabel: true,
+      },
+    ],
+    xAxis: [
+      {
+        type: "value",
+        gridIndex: 0,
+      },
+      {
+        type: "value",
+        position: "top",
+        splitLine: {
+          lineStyle: {
+            type: "dashed",
+          },
+        },
+        gridIndex: 1,
+      },
+    ],
+    yAxis: [
+      {
+        type: "category",
+        data: [
+          "Product",
+          "Office of CEO",
+          "Marketing",
+          "Customer Support",
+          "Finance",
+          "HR",
+          "IT",
+          "Sales",
+          "Operations",
+        ],
+        gridIndex: 0,
+      },
+      {
+        type: "category",
+        axisLine: { show: false },
+        axisLabel: { show: false },
+        axisTick: { show: false },
+        splitLine: { show: false },
+        gridIndex: 1,
+      },
+    ],
     series: [
       {
         name: "Blue",
@@ -67,12 +107,38 @@ function Charts() {
         barGap: "20%",
         barCategoryGap: "20%",
       },
+      {
+        name: "Difference",
+        type: "bar",
+        stack: "Difference",
+        label: {
+          show: true,
+          formatter: "{c} pp",
+        },
+        data: [
+          { value: 0.1 },
+          { value: -2.87, label: labelRight },
+          { value: 2.04 },
+          { value: -7.9, label: labelRight },
+          { value: 3.2 },
+          { value: 0.34 },
+          { value: 1.08 },
+          { value: 11.0 },
+          { value: 0.78 },
+        ],
+        xAxisIndex: 1,
+        yAxisIndex: 1,
+        barMaxWidth: 40,
+      },
     ],
   };
 
   return (
     <div className="flex-1">
-      <ReactECharts option={horizontalBarGraphOption} />
+      <ReactECharts
+        option={horizontalBarGraphOption}
+        style={{ height: "100%" }}
+      />
     </div>
   );
 }
