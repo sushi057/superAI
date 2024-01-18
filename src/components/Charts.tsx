@@ -23,20 +23,25 @@ function Charts() {
         top: "2%",
         left: "55%",
         rigth: "-20%",
-        // width: "45%",
+        width: "40%",
       },
     ],
     xAxis: [
       {
         type: "value",
+        axisLine: { show: true },
         axisLabel: {
-          formatter: "{value} %",
+          formatter: function (value: number) {
+            return value.toFixed(1) + "%";
+          },
         },
         gridIndex: 0,
       },
       {
         type: "value",
-        data: [-20, -10, 0, 10, 20],
+        min: -20,
+        max: 20,
+        interval: 10,
         splitLine: {
           lineStyle: {
             type: "dashed",
@@ -47,7 +52,9 @@ function Charts() {
         },
         boundaryGap: ["10%", "5%"],
         axisLabel: {
-          formatter: "{value} pp",
+          formatter: function (value: number) {
+            return value.toFixed(2) + " pp";
+          },
         },
         gridIndex: 1,
       },
@@ -91,7 +98,7 @@ function Charts() {
           formatter: "{c}%",
           color: "#4e73df",
         },
-        barMaxWidth: 20,
+        barMaxWidth: 25,
         barCategoryGap: "20%",
       },
       {
@@ -107,9 +114,9 @@ function Charts() {
           formatter: "{c}%",
           color: "#e74a3b",
         },
-        barMaxWidth: 20,
-        barGap: "20%",
-        barCategoryGap: "20%",
+        barMaxWidth: 25,
+        barGap: "15%",
+        barCategoryGap: "25%",
       },
       {
         name: "Difference",
