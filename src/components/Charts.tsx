@@ -71,7 +71,7 @@ function Charts() {
   };
 
   return (
-    <div>
+    <div className="flex-1">
       <ReactECharts option={horizontalBarGraphOption} />
     </div>
   );
